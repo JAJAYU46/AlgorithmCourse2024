@@ -343,11 +343,11 @@ void SortTool::BottomUpMergeSort(vector<int>& data)
     //===============================================================
     int numGroup=data.size(); //總共有幾組（最開始有幾個段段fu）
     int groupMem = 1; //每個group的人數
-    // while(numGroup>=1){ //當現在還沒有merge到剩一組
-    while(groupMem<=data.size()){//<Debug6> 這樣, 還要多做一次才對, 但真不懂
+    while(numGroup>1){ //當現在還沒有merge到剩一組
+    // while(groupMem<=data.size()){//<Debug6> 這樣, 還要多做一次才對, 但真不懂
         int i=1; //最左的<Debug> 因為merge()傳進去的是index, 所以是從零開始才對！或是保留1但最後傳進merge要-1！!
 
-        std::cout<<"loop1";
+        // std::cout<<"loop1";
         while(i <= data.size()){    //<Debug3> 當還不是最後一組, 最後一組因為可能沒有滿, 要另外處理, 阿如果剛剛好, 在前一組剛好就會被做完, 就不會跑到跑下面的那個剩餘處理了
             // int a = 
             // Merge( data, left, middle1, middle2, right );
@@ -356,11 +356,11 @@ void SortTool::BottomUpMergeSort(vector<int>& data)
             // }else{
             //     Merge( data, i, i+groupMem-1, i+groupMem, i+groupMem*2-1 );//它和它隔壁的group merge起來
             // }
-            Merge( data, i-1, i+groupMem-1-1, i+groupMem-1, std::min((int)data.size()-1-1, i+groupMem*2-1-1) );//它和它隔壁的group merge起來
+            Merge( data, i-1, i+groupMem-1-1, i+groupMem-1, std::min((int)data.size()-1, i+groupMem*2-1-1) );//它和它隔壁的group merge起來
             
 
             i=i+groupMem*2;//在併右邊那組兩個
-            std::cout<<"loop2";
+            // std::cout<<"loop2";
         }
         // numGroup=(int)numGroup/groupMem; //就是組數會剛剛好
         // if(i<data.size()){//<Debug3> 如果最後一組處理完後還有剩下的（就是i index還沒超出最後一個數字）, 就會跑到這個
