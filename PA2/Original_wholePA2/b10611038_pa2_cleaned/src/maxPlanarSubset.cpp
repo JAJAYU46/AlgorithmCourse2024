@@ -19,12 +19,12 @@ public:
 
         //<Debug2-0> 不行這樣！!過了initialization 後, 要用assign!
         //<Debug2-1> 要用assign!
-        M.assign(2 * n, std::vector<int>(2 * n)); //<Debug2-2> 0~2n-1共有2n個數！! std::vector<std::vector<uint16_t>> M;
-        S.assign(2 * n, std::vector<int8_t>(2 * n));
+        M.assign(2 * n, std::vector<int>(2 * n, 0)); //<Debug2-2> 0~2n-1共有2n個數！! std::vector<std::vector<uint16_t>> M;
+        S.assign(2 * n, std::vector<int>(2 * n, 0));
 
-        // for(int i=0;i<=2*n-1;i++){
-        //     M[i][i]=0; //initialize 對角線為0    
-        // }
+        for(int i=0;i<=2*n-1;i++){
+            M[i][i]=0; //initialize 對角線為0    
+        }
 
         for(int l=1;l<=2*n-1;l++){//左右i,j的兩兩間距
             for(int i=0;i<=2*n-1-l;i++){
@@ -68,7 +68,7 @@ private:
     std::vector<int> chords;
     std::vector<std::vector<int>> maximumPlanarSubset_chord; //uint16_t
 
-    std::vector<std::vector<int8_t>> S;
+    std::vector<std::vector<int>> S;
     std::vector<std::vector<int>> M;
 
     void trace_maximumPlanarSubset_chord(int i,int j){
